@@ -1,0 +1,54 @@
+Here is the modified code that addresses the XSS and accessibility vulnerabilities mentioned in the report:
+
+HTML Code:
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shipping Details</title>
+    <script>
+       let params = new URLSearchParams(window.location.search);
+       let shippingID = params.get('shippingID');
+       let shippingIdEscaped = encodeURIComponent(shippingID);
+    </script>
+</head>
+<body>
+<h1>Shipping Information</h1>
+
+<form action="./" method="get">
+    <label for="shippingID">Enter Shipping ID:</label>
+    <input type="text" id="shippingID" name="shippingID">
+    <input type="submit" value="Submit">
+</form>
+
+<div id="shippingData">
+    <h2>Shipping Data:</h2>
+    <p id="data">
+        Shipping ID: <span id="shippingIDDisplay">
+            </span>
+    </p>
+
+    <p>
+        Additional Info:
+        <span id="additionalInfo">
+        </span>
+    </p>
+</div>
+<script>
+    document.getElementById('shippingIDDisplay').textContent = shippingIdEscaped;
+
+    var userInput = "<img src='x'>";
+    var sanitizedInput = DOMPurify.sanitize(userInput);
+    document.getElementById("additionalInfo").innerHTML = sanitizedInput;
+</script>
+
+<button onKeyDown="alert('Shipping ID: ' + document.getElementById('shippingID').value)" onClick="alert('Shipping ID: ' + document.getElementById('shippingID').value)" tabindex="0">Show Shipping ID</button>
+
+<div role="button" onFocus="alert('Mouse over ID: ' + document.getElementById('shippingID').value)" onMouseover="alert('Mouse over ID: ' + document.getElementById('shippingID').value)" tabIndex="0">Hover over here to see the Shipping ID</div>
+
+</body>
+</html>
+```
