@@ -45,13 +45,15 @@ After generating the fixes, the updated code will be saved and automatically pus
 
   
 ## API Endpoints
-** Endpoint **       **Method	**	       ** Description**
-   /	                   GET	     Displays the main page with instructions
-   /generate	           GET	     Clones a GitHub repository by URL
-   /fileupload	         GET	     Displays the file upload page
-   /upload	            POST	     Handles the upload of a file (e.g., PDF report)
-   /vulnerability	       GET	     Displays the vulnerability page
-   /vulnerability_action GET	     Analyzes and fixes XSS vulnerabilities in the code based on uploaded files
+| Endpoint              | Method | Description                                                    |
+|:----------------------|:-------|:---------------------------------------------------------------|
+| `/`                   | GET    | Displays the main page with instructions                        |
+| `/generate`           | GET    | Clones a GitHub repository by URL                               |
+| `/fileupload`         | GET    | Displays the file upload page                                   |
+| `/upload`             | POST   | Handles the upload of a file (e.g., PDF report)                 |
+| `/vulnerability`      | GET    | Displays the vulnerability page                                 |
+| `/vulnerability_action`| GET  | Analyzes and fixes XSS vulnerabilities in the code based on uploaded files |
+
 
 
 
